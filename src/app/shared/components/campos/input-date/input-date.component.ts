@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { FormGroup, AbstractControl } from '@angular/forms';
 import { ValidarCamposService } from '../validar-campos.service';
 
 @Component({
-  selector: 'dio-input-text',
-  templateUrl: './input-text.component.html',
-  styleUrls: ['./input-text.component.scss']
+  selector: 'dio-input-date',
+  templateUrl: './input-date.component.html',
+  styleUrls: ['./input-date.component.scss']
 })
-export class InputTextComponent implements OnInit {
+export class InputDateComponent {
   @Input() titulo: string;
   @Input() formGroup: FormGroup;
   @Input() controlName: string;

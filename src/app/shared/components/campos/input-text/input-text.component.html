@@ -1,1 +1,11 @@
-<p>input-text works!</p>
+<div [formGroup]="formGroup"> 
+   <mat-form-field class="full-width">
+        <input matInput
+         [placeholder]="titulo"
+         [name]="controlName" 
+         [formControlName]="controlName">
+        <mat-error *ngIf="validacao.hasErrorValidar(formControl, 'required')">Campo Obrigatório</mat-error>
+        <mat-error *ngIf="validacao.hasError(formControl, 'minlength')">Campo precisa ter no mínimo {{validacao.lenghtValidar(formControl, 'minlength')}} caracteres</mat-error>
+        <mat-error *ngIf="validacao.hasError(formControl, 'maxlength')">Campo pode ter no máximo {{validacao.lenghtValidar(formControl, 'maxlength')}} cadacteres</mat-error>
+    </mat-form-field>
+</div>
