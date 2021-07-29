@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FilmesService } from 'src/app/core/filmes.service';
 import { ValidarCamposService } from 'src/app/shared/components/campos/validar-campos.service';
+import { Filme } from 'src/app/shared/models/filme';
 
 @Component({
   selector: 'dio-cadastro-filmes',
@@ -13,7 +15,8 @@ export class CadastroFilmesComponent implements OnInit {
   generos: Array<string>;
 
   constructor( public validacao: ValidarCamposService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private filmeService: FilmesService) { }
 
   get f(){
     return this.cadastro.controls;
@@ -33,19 +36,30 @@ export class CadastroFilmesComponent implements OnInit {
 
     this.generos = ['Ação', 'Romance', 'Aventura', 'Terror', 'Ficção cientifica', 'Comédia', 'Drama'];
   }
-    salvar(): void {
+    submit(): void {
       this.cadastro.markAllAsTouched();
       if(this.cadastro.invalid){
         return;
-        console.log(this.cadastro)
+        
       }
       // markAllAsTouched explicação:
       // o markAllAsTouched passa a informação de que todas minhas opções no formulário foram clicadas ou estão sujas
 
-      alert('SUCESSO!! /n/n' + JSON.stringify(this.cadastro.value, null, 4))
+      const filme = this.cadastro.getRawValue() as Filme;
+      this.salvar(filme);
     }
 
     reiniciarForm(): void{
       this.cadastro.reset();
+    }
+
+    private salvar(filme : Filme): void{
+      this.filmeService.salvar(filme).subscribe(()=>{
+        alert('Sucesso');
+      },
+        ()=>{
+          alert('Erro ao salvar!!!')
+        }
+      )
     }
 }
