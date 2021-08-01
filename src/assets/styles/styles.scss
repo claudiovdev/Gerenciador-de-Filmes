@@ -17,6 +17,7 @@ body {
   width: 75%;
 }
 
+
 .main-div {
   display: flex;
   justify-content: center;
@@ -25,4 +26,20 @@ body {
 
 .full-width {
   width: 100%;
+}
+
+.float-left{
+  float: left;
+}
+
+.margin10{
+  margin: 10px;
+}
+
+.padding10{
+  padding: 10px;
+}
+
+.quebrar-linha{
+  white-space: pre-line;
 }
